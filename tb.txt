@@ -1,0 +1,94 @@
+Danna Saputra, S.Kom, M.Kom
+
+Modul Ke:
+Fakultas : 
+Teknologi Informasi
+Program Studi:
+Teknik Informatika
+Basis Data Lanjut
+Tugas Besar
+
+Pendahuluan
+Mahasiswa diminta merancang dan mengimplementasikan skema database enterprise-grade untuk sebuah aplikasi berskala besar yang memiliki banyak modul serta kebutuhan integrasi lintas sistem.
+
+Database yang dirancang harus memenuhi kriteria:
+Konsistensi tinggi
+Skalabilitas
+Keamanan
+Modularitas
+Kemudahan integrasi
+Optimasi performa
+
+Analisis Kebutuhan Enterprise
+Identifikasi minimal:
+5 modul utama (contoh: pengguna, transaksi, produk, logistik, pembayaran)
+5 kebutuhan fungsional
+5 kebutuhan non-fungsional (availability, integrity, ACID, security, audit, performance)
+
+Penyusunan Arsitektur Database Enterprise
+Buat rancangan arsitektur yang memuat:
+Pusat Data (Main DB)
+Database terdistribusi / sharding (jika perlu)
+Master–Slave Replication (opsional)
+Integrasi API dengan sistem lain
+Skema tabel per modul
+
+Menyusun Skema Database (ERD Enterprise)
+Rancang ERD dengan ketentuan:
+Minimal 10 entitas
+Memiliki relasi 1–1, 1–N, N–N
+Setiap modul harus terwakili
+Menggunakan pendekatan domain-driven design (DDD)
+Gunakan konsep bounded context (modul berdiri dengan domain masing-masing)
+
+Normalisasi dan Pembagian Modul
+Normalisasi minimal hingga 3NF
+Identifikasi tabel yang berada pada modul berbeda
+Tentukan shared tables atau reference table
+Jelaskan bagaimana tabel-tabel lintas modul saling berkomunikasi
+
+Penyusunan Skema Fisik (Physical Schema)
+CREATE TABLE
+PRIMARY & FOREIGN KEY
+UNIQUE
+INDEX
+CHECK constraint
+Partitioning (opsional)
+
+Fitur Advanced Database
+1 Stored Procedure
+1 Function
+1 Trigger
+1 View
+1 Transaction (BEGIN–COMMIT–ROLLBACK)
+
+Integrasi Database dengan Aplikasi Web
+CRUD minimal untuk 3 modul
+Endpoint API (REST)
+Autentikasi & Otorisasi
+Query transaksi
+Join dan subquery
+
+Skema Audit & Logging
+Bangun modul log untuk:
+Perubahan data (insert/update/delete)
+
+Optimasi & Analisis Performa
+Indexing
+EXPLAIN ANALYZE
+Evaluasi query lambat
+Optimasi join
+Penggunaan view atau materialized view jika perlu
+Output: laporan optimasi.
+
+Dokumentasi Enterprise Level
+Arsitektur database
+ERD high-level & per modul
+Penjelasan inter-module communication
+Keamanan & backup strategy
+Penanganan transaksi besar
+Contoh query kritis
+Diagram integrasi API
+
+TERIMA KASIH
+
