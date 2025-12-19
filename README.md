@@ -1,59 +1,341 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Basidut - Sistem E-Commerce Enterprise
 
 <p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+  <img src="https://img.shields.io/badge/Laravel-11-FF2D20?style=for-the-badge&logo=laravel&logoColor=white" alt="Laravel">
+  <img src="https://img.shields.io/badge/MySQL-8.0-4479A1?style=for-the-badge&logo=mysql&logoColor=white" alt="MySQL">
+  <img src="https://img.shields.io/badge/PHP-8.2-777BB4?style=for-the-badge&logo=php&logoColor=white" alt="PHP">
 </p>
 
-## About Laravel
+## 📖 Tentang Proyek
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+**Basidut** adalah sistem e-commerce enterprise yang dibangun dengan arsitektur **Monolithic Database** menggunakan Laravel dan MySQL. Proyek ini dibuat sebagai Tugas Besar mata kuliah Basis Data Lanjut, dengan fokus pada implementasi fitur-fitur database advanced seperti Stored Procedure, Trigger, dan View.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### 🎯 Tujuan Pembelajaran
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- Implementasi **Stored Procedure** untuk business logic di database
+- Penggunaan **Database Trigger** untuk audit logging otomatis
+- Penerapan **Database View** untuk query kompleks
+- Transaksi **ACID** dengan row locking
+- Custom authentication dengan skema Indonesia
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+## ✨ Fitur Utama
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### 🔐 Autentikasi Custom
+- Tabel `pengguna` dengan field Indonesia (`kata_sandi` bukan `password`)
+- Login dan registrasi dengan Laravel Auth
+- Session management
 
-## Laravel Sponsors
+### 🛍️ Manajemen Produk
+- Katalog produk dengan stok real-time
+- Validasi constraint di database level
+- Format harga Rupiah
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### 📦 Pemesanan dengan Stored Procedure
+- **Stored Procedure:** `sp_buat_pesanan_enterprise`
+- Transaksi ACID dengan row locking
+- Validasi stok otomatis
+- Integrasi logistik dalam satu transaksi
 
-### Premium Partners
+### 📊 Audit Logging Otomatis
+- **Trigger:** Mencatat setiap perubahan stok
+- Tabel `log_audit` untuk tracking
+- Timestamp otomatis
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+### 🚚 Monitoring Pengiriman
+- **View:** `v_monitoring_pengiriman`
+- Data real-time status pesanan
+- Informasi kurir dan nomor resi
 
-## Contributing
+---
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## 🚀 Cara Install
 
-## Code of Conduct
+### Prasyarat
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+- PHP >= 8.2
+- Composer
+- MySQL >= 8.0
+- HeidiSQL atau MySQL Workbench
 
-## Security Vulnerabilities
+### Langkah 1: Clone Repository
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+```bash
+git clone <repository-url>
+cd basidut
+```
 
-## License
+### Langkah 2: Install Dependencies
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+```bash
+composer install
+npm install
+```
+
+### Langkah 3: Konfigurasi Environment
+
+```bash
+cp .env.example .env
+php artisan key:generate
+```
+
+Edit file `.env` dan sesuaikan konfigurasi database:
+
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=basidut
+DB_USERNAME=root
+DB_PASSWORD=your_password
+```
+
+### Langkah 4: Setup Database
+
+#### Opsi A: Menggunakan HeidiSQL (Recommended)
+
+1. Buka HeidiSQL
+2. Buat koneksi baru ke MySQL server Anda
+3. Buka file `database/basidut_schema.sql` (jika ada) atau jalankan script SQL dari `REQUIREMENTS.md`
+4. Execute script untuk membuat:
+   - Database `basidut`
+   - Semua tabel (pengguna, produk, pesanan, dll)
+   - Stored Procedure `sp_buat_pesanan_enterprise`
+   - Trigger untuk audit logging
+   - View `v_monitoring_pengiriman`
+   - Dummy data (100 users + 3 products)
+
+#### Opsi B: Menggunakan Command Line
+
+```bash
+mysql -u root -p < database/basidut_schema.sql
+```
+
+### Langkah 5: Jalankan Migrasi Laravel
+
+```bash
+php artisan migrate
+```
+
+> **Note:** Migrasi ini hanya untuk tabel Laravel (sessions, cache, jobs). Tabel utama sudah dibuat via SQL script.
+
+### Langkah 6: Jalankan Development Server
+
+```bash
+php artisan serve
+```
+
+Buka browser dan akses: **http://127.0.0.1:8000**
+
+---
+
+## 📚 Panduan Penggunaan
+
+### Akun Testing
+
+Sistem sudah dilengkapi dengan **100 akun dummy** untuk testing:
+
+| Username | Email | Password |
+|----------|-------|----------|
+| user1 - user100 | user1@mail.com - user100@mail.com | password123 |
+
+**Contoh Login:**
+- Email: `user1@mail.com`
+- Password: `password123`
+
+### Produk Tersedia
+
+1. **Laptop Pro** - Rp 15.000.000 (Stok: 50)
+2. **Smartphone X** - Rp 8.000.000 (Stok: 100)
+3. **Kemeja Kantor** - Rp 150.000 (Stok: 200)
+
+### Flow Testing
+
+1. **Register/Login** → Buat akun baru atau gunakan akun dummy
+2. **Browse Produk** → Lihat katalog di halaman `/shop`
+3. **Buat Pesanan** → Klik "Beli Sekarang", isi form, submit
+4. **Lihat Pesanan** → Cek history di menu "Pesanan"
+5. **Verifikasi Database** → Cek di HeidiSQL untuk melihat:
+   - Pesanan baru di tabel `pesanan`
+   - Item pesanan di `item_pesanan`
+   - Stok berkurang di `produk`
+   - Log audit di `log_audit`
+
+---
+
+## 🏗️ Arsitektur
+
+### Database Schema
+
+```
+pengguna (Users)
+├── id
+├── username
+├── email
+├── kata_sandi (hashed password)
+├── nama_lengkap
+└── aktif
+
+produk (Products)
+├── id
+├── nama
+├── harga (CHECK >= 0)
+├── sku
+├── stok (CHECK >= 0)
+└── kategori_id
+
+pesanan (Orders)
+├── id
+├── nomor_pesanan
+├── pelanggan_id → pengguna.id
+├── total
+└── status (ENUM)
+
+item_pesanan (Order Items)
+├── pesanan_id → pesanan.id
+├── produk_id → produk.id
+├── jumlah
+└── harga_satuan
+
+pengiriman (Shipping)
+├── pesanan_id → pesanan.id
+├── kurir
+├── nomor_resi
+└── status_pengiriman
+```
+
+### Stored Procedure
+
+```sql
+CALL sp_buat_pesanan_enterprise(
+    user_id INT,
+    product_id INT,
+    qty INT,
+    courier VARCHAR(50),
+    address TEXT,
+    OUT order_id INT,
+    OUT status VARCHAR(100)
+);
+```
+
+**Fungsi:**
+- Validasi stok produk
+- Lock row untuk concurrency control
+- Insert ke `pesanan`, `item_pesanan`, `pengiriman`
+- Kurangi stok produk
+- COMMIT atau ROLLBACK otomatis
+
+### Trigger
+
+```sql
+CREATE TRIGGER trg_audit_stok_update
+AFTER UPDATE ON produk
+FOR EACH ROW
+BEGIN
+    IF OLD.stok <> NEW.stok THEN
+        INSERT INTO log_audit (...)
+        VALUES (...);
+    END IF;
+END;
+```
+
+---
+
+## 🛠️ Teknologi
+
+- **Backend:** Laravel 11
+- **Database:** MySQL 8.0
+- **Frontend:** Blade Templates + Bootstrap 5
+- **Font:** Inter (Google Fonts)
+- **Icons:** Bootstrap Icons
+
+---
+
+## 📁 Struktur Folder
+
+```
+basidut/
+├── app/
+│   ├── Http/Controllers/
+│   │   ├── AuthController.php
+│   │   ├── ProdukController.php
+│   │   └── PesananController.php
+│   └── Models/
+│       ├── Pengguna.php
+│       ├── Produk.php
+│       ├── Pesanan.php
+│       ├── ItemPesanan.php
+│       └── Pengiriman.php
+├── resources/views/
+│   ├── layouts/app.blade.php
+│   ├── auth/
+│   ├── shop.blade.php
+│   ├── orders/
+│   └── guide.blade.php
+├── routes/web.php
+├── database/
+│   └── basidut_schema.sql
+└── REQUIREMENTS.md
+```
+
+---
+
+## 📖 Dokumentasi Tambahan
+
+- **[REQUIREMENTS.md](REQUIREMENTS.md)** - Spesifikasi teknis dan requirements
+- **[/guide](http://127.0.0.1:8000/guide)** - Panduan testing di aplikasi
+
+---
+
+## 🧪 Testing
+
+### Manual Testing
+
+1. Akses `/guide` untuk panduan lengkap
+2. Test autentikasi (register/login)
+3. Test product listing
+4. Test order creation (stored procedure)
+5. Test order history
+6. Verifikasi di HeidiSQL
+
+### Database Verification
+
+```sql
+-- Cek pesanan terbaru
+SELECT * FROM pesanan ORDER BY id DESC LIMIT 5;
+
+-- Cek stok produk
+SELECT nama, stok FROM produk;
+
+-- Cek audit log
+SELECT * FROM log_audit ORDER BY id DESC LIMIT 10;
+
+-- Cek monitoring pengiriman
+SELECT * FROM v_monitoring_pengiriman;
+```
+
+---
+
+## 👥 Tim Pengembang
+
+Tugas Besar Basis Data Lanjut - [Nama Universitas]
+
+---
+
+## 📄 Lisensi
+
+Proyek ini dibuat untuk keperluan akademik.
+
+---
+
+## 🙏 Acknowledgments
+
+- Laravel Framework
+- Bootstrap 5
+- MySQL Documentation
+- HeidiSQL
+
+---
+
+**Happy Coding! 🚀**
