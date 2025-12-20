@@ -22,3 +22,13 @@
 Homestead.json
 Homestead.yaml
 Thumbs.db
+config/jwt.php
+config/auth.php
+config/sanctum.php
+database/migrations/2025_12_20_105631_create_personal_access_tokens_table.php
+config/auth.php
+routes/api.php
+composer.json
+composer.lock
+package-lock.json
+composer.lock

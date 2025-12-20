@@ -241,6 +241,75 @@ END;
 ```
 
 ---
+🚀 Langkah Instalasi JWT
+1. Install Package JWT
+Jalankan perintah berikut untuk mengunduh package:
+```bash
+composer require tymon/jwt-auth
+```
+2. Publish Konfigurasi
+Publish file konfigurasi agar kamu bisa menyesuaikan pengaturan JWT:
+```bash
+php artisan vendor:publish --provider="Tymon\JWTAuth\Providers\LaravelServiceProvider"
+```
+3. Generate Secret Key
+Buat kunci rahasia yang digunakan untuk mengenkripsi token:
+```bash
+php artisan jwt:secret
+```
+
+🛠️ Konfigurasi Backend
+1. Setup API (Laravel 11+)
+Pastikan struktur API sudah terpasang di Laravel kamu:
+```bash
+php artisan install:api
+```
+
+2. Konfigurasi Auth Guard
+Buka file config/auth.php dan tambahkan guard api agar menggunakan driver jwt:
+```bash
+'guards' => [
+        'web' => [
+            'driver' => 'session',
+            'provider' => 'users',
+        ],
+        'api' => [
+        'driver' => 'jwt',
+        'provider' => 'users',
+    ],
+    ],
+```
+3. Bypass CSRF untuk API
+Untuk menghindari error 419 Page Expired saat melakukan request POST ke API, kita perlu mengecualikan rute API dari pengecekan CSRF di bootstrap/app.php:
+```bash
+    ->withMiddleware(function (Middleware $middleware): void {
+     $middleware->validateCsrfTokens(except: [
+        'api/*', // Semua rute yang diawali api/ akan bebas dari CSRF
+        'register' 
+    ]);
+```
+
+📁 Struktur Controller
+Berikut adalah perintah untuk membuat controller yang dibutuhkan:
+
+Register (Invokable): php artisan make:controller Api/RegisterController -i
+
+Login (Invokable): php artisan make:controller Api/LoginController -i
+
+Produk: php artisan make:controller Api/ProdukController
+
+🔒 Implementasi Pengguna Model
+Pastikan model Pengguna.php mengimplementasikan Tymon\JWTAuth\Contracts\JWTSubject:
+```bash
+public function getJWTIdentifier() {
+        return $this->getKey();
+    }
+
+    public function getJWTCustomClaims() {
+        return [];
+    }
+```
+
 
 ## 🛠️ Teknologi
 
